@@ -19,19 +19,6 @@ export const workflowSettings: WorkflowSettings = {
 
 // The workflow code to be executed when the event is triggered
 export default async function Workflow(event: onPostAuthenticationEvent) {
-  NonPersistentSessionWorkflow(event);
-}
-
-function c() {
-  if (!kinde.accessToken)
-    throw new Error(
-      "accessToken binding not available, please add to workflow/page settings to enable"
-    );
-  let e2 = kinde.accessToken.getCustomClaims();
-  return new Proxy(e2, r);
-}
-
-async function NonPersistentSessionWorkflow(event) {
   let policy = "persistent"
 
   const nonPersistentConnectionIDs = getEnvironmentVariable(
@@ -50,3 +37,13 @@ async function NonPersistentSessionWorkflow(event) {
   let accessToken = c();
   (accessToken.isDeployed = !0), (accessToken.ksp = policy);
 }
+
+function c() {
+  if (!kinde.accessToken)
+    throw new Error(
+      "accessToken binding not available, please add to workflow/page settings to enable"
+    );
+  let e2 = kinde.accessToken.getCustomClaims();
+  return new Proxy(e2, r);
+}
+
