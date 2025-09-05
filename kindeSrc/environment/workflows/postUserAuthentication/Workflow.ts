@@ -36,16 +36,10 @@ export default async function Workflow(event: onPostAuthenticationEvent) {
     console.log("setting sso session policy to non_persistent")
   }
 
-  let accessToken = c();
+  const accessToken = accessTokenCustomClaims<{
+    isDeployed: boolean;
+  }>();
   (accessToken.isDeployed = !0), (accessToken.ksp = policy);
 }
 
-function c() {
-  if (!kinde.accessToken)
-    throw new Error(
-      "accessToken binding not available, please add to workflow/page settings to enable"
-    );
-  let e2 = kinde.accessToken.getCustomClaims();
-  return new Proxy(e2, r);
-}
 
