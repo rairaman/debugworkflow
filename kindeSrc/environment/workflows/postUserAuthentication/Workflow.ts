@@ -1,7 +1,9 @@
 import {
-  onPostAuthenticationEvent,
+  onUserTokenGeneratedEvent,
   WorkflowSettings,
   WorkflowTrigger,
+  accessTokenCustomClaims,
+  getEnvironmentVariable,
 } from "@kinde/infrastructure";
 
 // The setting for this workflow
