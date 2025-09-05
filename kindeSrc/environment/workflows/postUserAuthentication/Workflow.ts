@@ -33,13 +33,15 @@ export default async function Workflow(event: onPostAuthenticationEvent) {
   // check if the connection id is in the non persistent connection ids
   if (nonPersistentConnectionIDs.includes(event.context.auth.connectionId)) {
     kinde.ssoSession.setPolicy("non_persistent");
-    console.log("setting sso session policy to non_persistent")
+    console.log("setting sso session policy to non_persistent");
+    policy = "non_persistent";
   }
 
   const accessToken = accessTokenCustomClaims<{
     isDeployed: boolean;
   }>();
-  (accessToken.isDeployed = !0), (accessToken.ksp = policy);
+  accessToken.isDeployed = true;
+  accessToken.ksp = policy;
 }
 
 
