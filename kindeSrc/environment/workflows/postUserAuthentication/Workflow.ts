@@ -42,6 +42,8 @@ export default async function Workflow(event: onPostAuthenticationEvent) {
   }>();
   accessToken.isDeployed = true;
   accessToken.ksp = policy;
+
+  return null;
 }
 
 
